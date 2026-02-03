@@ -29,7 +29,7 @@ const Login = () => {
     <div className='flex items-center justify-center min-h-screen bg-gray-50'>
         <form
             onSubmit={handleSubmit}
-            className="sm:w-87.5 w-full text-center bg-white border border-white rounded-2xl px-8">
+            className="sm:w-87.5 w-full text-center bg-white border border-gray-300/60 rounded-2xl px-8">
             <h1 className="text-grey-900 text-3xl mt-10 font-medium">
                 {state === "login" ? "Login" : "Sign up"}
             </h1>
@@ -37,18 +37,18 @@ const Login = () => {
             <p className="text-gray-400 text-sm mt-2">Please {state} in to continue</p>
 
             {state !== "login" && (
-                <div className="flex items-center mt-6 w-full bg-white border border-gray-700 h-12 rounded-full overflow-hidden pl-6 gap-2 ">
+                <div className="flex items-center mt-6 w-full bg-white border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2 ">
                     <User2Icon size={16} color='#6B7280'/>
                     <input type="text" name="name" placeholder="Name" className="w-full bg-transparent text-white placeholder-gray-400 border-none outline-none " value={formData.name} onChange={handleChange} required />
                 </div>
             )}
 
-            <div className="flex items-center w-full mt-4 bg-white border border-gray-700 h-12 rounded-full overflow-hidden pl-6 gap-2 ">
+            <div className="flex items-center w-full mt-4 bg-white border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2 ">
                 <Mail size={16} color='#6B7280'/>
                 <input type="email" name="email" placeholder="Email id" className="w-full bg-transparent text-white placeholder-gray-400 border-none outline-none " value={formData.email} onChange={handleChange} required />
             </div>
 
-            <div className=" flex items-center mt-4 w-full bg-white border border-gray-700 h-12 rounded-full overflow-hidden pl-6 gap-2 ">
+            <div className=" flex items-center mt-4 w-full bg-white border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2 ">
                 <Lock size={16} color ='#6B7280'/> 
                 <input type="password" name="password" placeholder="Password" className="w-full bg-transparent text-white placeholder-gray-400 border-none outline-none" value={formData.password} onChange={handleChange} required />
             </div>
