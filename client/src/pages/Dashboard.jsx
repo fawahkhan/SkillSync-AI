@@ -1,14 +1,33 @@
-import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloudIcon } from 'lucide-react'
+import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloudIcon, XIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import {dummyResumeData} from '../assets/assets'
+import { useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
   // different colors for different resume items
   const colors = ['#9333ea', '#d97706', '#dc2626', '#0284c7', '#16a34a']
   //below the horizontal line we have to create a state for existing resumes
+  
     const [allResumes, setAllResumes] = useState([])
+    const [showCreateResumes, setShowCreateResumes] = useState(false) // to show the popup when we click on create resume button
+    const [showUploadResumes, setShowUploadResumes] = useState(false)
+    const [title, setTitle] = useState('')
+    
+    const [resume, setResume] = useState(null)
+    // to store the id of resume which we want to edit
+    const [editresumeId, seteditResumeId] = useState('')
+
+    const navigate = useNavigate() // to navigate to resume builder page when we click on a resume item
     const loadAllResumes = async()=>{
       setAllResumes(dummyResumeData)  //loaded from assets folder
+    }
+      // here we will send a request to backend to create a resume and then update the allResumes state with the new resume
+
+    const createResume = async(e)=>{
+      e.preventDefault()
+      // console.log(title)
+      setShowCreateResumes(false) // to close the popup after creating a resume
+      navigate(`app/builder/res123`) // to navigate to resume builder page after creating a resume 
     }
     //to execute that data whenever the file gets loaded
     useEffect(()=>{
@@ -20,7 +39,7 @@ const Dashboard = () => {
       <div className='max-w-7xl mx-auto px-4 py-8'>
         <p className='text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text text-transparent sm:hidden'>Welcome Fawah  </p>
         <div className='flex gap-4'>
-          <button className="w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-indigo-500 hover:shadow-lg transition-all duration-300 cursor-pointer">
+          <button onClick={()=>{setShowCreateResumes(true)}} className="w-full bg-white sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 text-slate-600 border border-dashed border-slate-300 group hover:border-indigo-500 hover:shadow-lg transition-all duration-300 cursor-pointer">
             <PlusIcon className="size-11 transition-all duration-300 p-2.5 bg-gradient-to-br from-indigo-300 to-indigo-500 text-white rounded-full"/>
             <p className="text-sm group-hover:text-indigo-600 transition-all duration-300">
               Create Resume
@@ -37,6 +56,7 @@ const Dashboard = () => {
         </div>
 
         <hr className='border-slate-300 my-6 sm:w-[350px]'/>
+        {/* this div has all resume  */}
         <div className='grid grid-cols-2 sm:flex flex-wrap gap-4'>
           {/* to map our data  */}
           {allResumes.map((resume , index)=>{
@@ -66,6 +86,18 @@ const Dashboard = () => {
             )
           })}
         </div>
+        {/* now i want a popppup whenever show create resume becomes true */}
+        {showCreateResumes && (
+          <form onSubmit={createResume} onClick={()=>{setShowCreateResumes(false)}} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
+            <div onClick={e=>{e.stopPropagation()}} className='relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6 '> 
+              <h2 className=' text-xl font-bold mb-4 '>Create a Resume</h2>
+              <input type="text" placeholder='Enter resume title' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
+              <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>Create Resume </button>
+              {/* icon to close popup */}
+              <XIcon className=' absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-slate-600 transition-colors' onClick={()=>{setShowCreateResumes(false); setTitle('')}}/>
+            </div>
+          </form>
+        )}
       </div> 
 
     </div>
