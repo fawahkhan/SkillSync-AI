@@ -27,7 +27,7 @@ const Dashboard = () => {
       e.preventDefault()
       // console.log(title)
       setShowCreateResumes(false) // to close the popup after creating a resume
-      navigate(`app/builder/res123`) // to navigate to resume builder page after creating a resume 
+      navigate(`/app/builder/res123`) // to navigate to resume builder page after creating a resume 
     }
     //to execute that data whenever the file gets loaded
     useEffect(()=>{
@@ -91,10 +91,21 @@ const Dashboard = () => {
           <form onSubmit={createResume} onClick={()=>{setShowCreateResumes(false)}} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
             <div onClick={e=>{e.stopPropagation()}} className='relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6 '> 
               <h2 className=' text-xl font-bold mb-4 '>Create a Resume</h2>
-              <input type="text" placeholder='Enter resume title' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
+              <input onChange={(e)=>{setTitle(e.target.value)} } value = {title} type="text" placeholder='Enter resume title' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
               <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>Create Resume </button>
               {/* icon to close popup */}
               <XIcon className=' absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-slate-600 transition-colors' onClick={()=>{setShowCreateResumes(false); setTitle('')}}/>
+            </div>
+          </form>
+        )}
+        {showUploadResumes && (
+          <form onSubmit={uploadResume} onClick={()=>{setShowUploadResumes(false)}} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
+            <div onClick={e=>{e.stopPropagation()}} className='relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6 '> 
+              <h2 className=' text-xl font-bold mb-4 '>Upload an Existing Resume</h2>
+              <input onChange={(e)=>{setTitle(e.target.value)} } value = {title} type="file" accept='.pdf,.doc,.docx' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
+              <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>Upload Resume </button>
+              {/* icon to close popup */}
+              <XIcon className=' absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-slate-600 transition-colors' onClick={()=>{setShowUploadResumes(false); setTitle('')}}/>
             </div>
           </form>
         )}
