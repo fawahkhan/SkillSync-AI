@@ -29,6 +29,13 @@ const Dashboard = () => {
       setShowCreateResumes(false) // to close the popup after creating a resume
       navigate(`/app/builder/res123`) // to navigate to resume builder page after creating a resume 
     }
+    //to upload resume
+    const uploadResume = async(event)=>{
+      event.preventDefault()
+      // console.log(title)
+      setShowUploadResumes(false) // to close the popup after uploading a resume
+      navigate(`/app/builder/res123`)
+    }
     //to execute that data whenever the file gets loaded
     useEffect(()=>{
       loadAllResumes()
@@ -103,6 +110,23 @@ const Dashboard = () => {
             <div onClick={e=>{e.stopPropagation()}} className='relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6 '> 
               <h2 className=' text-xl font-bold mb-4 '>Upload an Existing Resume</h2>
               <input onChange={(e)=>{setTitle(e.target.value)} } value = {title} type="file" accept='.pdf,.doc,.docx' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
+              <div>
+                <label htmlFor="resume-input" className='block text-sm text-slate-700'>
+                  Select resume file
+                  <div className='flex flex-col items-center justify-center gap-2 border group text-slate-400 border-dashed rounded-md p-4 py-10 my-4 hover:border-green-500 hover:text-green-700 cursor-pointer transition-colors'>
+                    {/* here in this div we will display upload resume name if any resume is uploaded. if not uploaded then we will display the upload icon and text */}
+                    {resume?(
+                      <p className='text:green-700'>{resume.name}</p>
+                    ):(
+                      <>
+                        <UploadCloud className="size-14 stroke-1" />
+                        <p>Upload Resume</p>
+                      
+                      </>
+                    )}
+                  </div>
+                </label>
+              </div>
               <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>Upload Resume </button>
               {/* icon to close popup */}
               <XIcon className=' absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-slate-600 transition-colors' onClick={()=>{setShowUploadResumes(false); setTitle('')}}/>
