@@ -79,7 +79,7 @@ const Dashboard = () => {
             const baseColor = colors[index % colors.length]
             return(
               // to open existing resumes added navigation
-              <button key={index} onClick={()=>{navigate(`/app/builder/${resume._id }`)}} className="relative w-full sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer" style={{
+              <button key={index} onClick={()=>{navigate(`/app/builder/${resume._id}`)}} className="relative w-full sm:max-w-36 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer" style={{
                   background: `linear-gradient(135deg, ${baseColor}10, ${baseColor}40)`,
                   borderColor: baseColor + "40",
                 }}>
@@ -119,13 +119,13 @@ const Dashboard = () => {
           <form onSubmit={uploadResume} onClick={()=>{setShowUploadResumes(false)}} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
             <div onClick={e=>{e.stopPropagation()}} className='relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6 '> 
               <h2 className=' text-xl font-bold mb-4 '>Upload an Existing Resume</h2>
-              <input onChange={(e)=>{setTitle(e.target.value)} } value = {title} type="file" accept='.pdf,.doc,.docx' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
+              <input onChange={(e)=>{setTitle(e.target.value)} } value = {title} type="text" accept='.pdf,.doc,.docx' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
               <div>
                 <label htmlFor="resume-input" className='block text-sm text-slate-700'>
                   Select resume file
                   <div className='flex flex-col items-center justify-center gap-2 border group text-slate-400 border-dashed rounded-md p-4 py-10 my-4 hover:border-green-500 hover:text-green-700 cursor-pointer transition-colors'>
                     {/* here in this div we will display upload resume name if any resume is uploaded. if not uploaded then we will display the upload icon and text */}
-                    {resume?(
+                    {resume ? (
                       <p className='text:green-700'>{resume.name}</p>
                     ):(
                       <>
