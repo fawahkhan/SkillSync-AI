@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets'
-import { ArrowLeftIcon, Briefcase, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react'
+import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react'
 
 const ResumeBuilder = () => {
 
@@ -65,16 +65,43 @@ const ResumeBuilder = () => {
               className="absolute top-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 border-none transition-all duration-2000"
               style={{ width: `${activeSectionIndex * 100 / (sections.length - 1)}%` }}              
             />
-            {/* section navigation */}
+            {/* Section Navigation */}
+            <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
+            {/* left-side buttons to change the colours and the templates */}
+              <div></div>
+              {/* navigation buttons here */}
+              <div className='flex items-center'>
+                {activeSectionIndex !== 0 && (
+                  <button
+                    onClick={() =>
+                      setActiveSectionIndex((prevIndex) => Math.max(prevIndex - 1, 0))
+                    }
+                    className='flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all'
+                    disabled={activeSectionIndex === 0}
+                  >
+                    <ChevronLeft className="size-4" /> Previous
+                  </button>
+                )}
+                  <button
+                    onClick={() =>
+                      setActiveSectionIndex((prevIndex) => Math.min(prevIndex + 1, sections.length - 1))
+                    }
+                    className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all ${activeSectionIndex === sections.length - 1 && 'opacity-50'}`}
+                    disabled={activeSectionIndex === sections.length - 1}
+                    >
+                    <ChevronRight className="size-4" /> Next
+                  </button>
+              </div>
+            </div>    
           </div>
         </div>
         {/* right panel - form */}
-        <div>
+        <div className='lg:col-span-7'>
 
         </div>
       </div>
     </div>
-  </div> 
+    </div> 
   )
 }
 
