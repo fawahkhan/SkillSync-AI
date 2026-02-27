@@ -93,13 +93,13 @@ const ResumeBuilder = () => {
                     <ChevronRight className="size-4" /> Next
                   </button>
               </div>
+            </div>
               {/* multistep form in personalinfoform.jsx and we will mount that form here. */}
               <div className='space-y-6'>
                 {activeSection.id === 'personal' && (
                   <PersonalInfoForm data= {resumeData.personal_info} onChange={(data)=>setResumeData(prev => ({...prev, personal_info: data}))} removeBackground={removeBackground} setRemoveBackground={setRemoveBackground}/>
                 )}  
               </div>
-            </div>    
           </div>
         </div>
         {/* right panel - form */}
@@ -108,7 +108,7 @@ const ResumeBuilder = () => {
         </div>
       </div>
     </div>
-    </div> 
+  </div> 
   )
 }
 
