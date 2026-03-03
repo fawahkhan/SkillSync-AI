@@ -26,7 +26,7 @@ const ResumePreview = ({data, template, accentColor, classes = ""}) => {
             {/* we will use the resume template here and we will pass the data through props */}
             {renderTemplate()}
       </div>
-      <style jsx>
+      <style>
             {`
             @page {
               size: letter;
