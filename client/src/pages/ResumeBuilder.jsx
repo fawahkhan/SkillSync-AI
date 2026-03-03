@@ -6,7 +6,7 @@ import PersonalInfoForm from '../components/PersonalInfoForm'
 
 const ResumeBuilder = () => {
 
-  const {resumeId} = useParams
+  const {resumeId} = useParams() // to get the resumeId from the url
 
   const [resumeData, setResumeData] = useState({
     _id: '',
