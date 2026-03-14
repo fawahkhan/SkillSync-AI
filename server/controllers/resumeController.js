@@ -104,8 +104,12 @@ export const updateResume = async (req,res)=>{
         const image = req.file // this will be taken care by the middleware multer which handles all file uploads
 
         // COPY OF RESUME DATA  that will be saved in the db
-        let resumeDataCopy = JSON.parse(JSON.stringify(resumeData));
-
+        let resumeDataCopy ;
+        if (typeof resumeData==="string"){
+            resumeDataCopy = await JSON.parse(resumeData);
+        }else{
+            resumeDataCopy = structuredClone(resumeData);
+        }
         if(image){
             const imageBufferData = fs.createReadStream(image.path)
             const response = await imagekit.files.upload({
