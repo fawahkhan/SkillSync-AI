@@ -1,6 +1,7 @@
 import User from "../models/User";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import Resume from "../models/Resume";
 
 // after we create the userId this fn will generate and return the token
 const generateToken = (userId) => {
@@ -105,6 +106,21 @@ export const getUserById = async (req,res)=>{
             user ,
         })
     } catch (error) {
+        return res.status(400).json({message: error.message})
+    }
+}
+
+// controller for getting user Resumes
+// GET: /api/users/resumes
+
+export const getUserResumes = async (req,res) =>{
+    try {
+        const userId = req.userId // we will get this userId sing the protect middleware
+
+        // return user resumes using this userId
+        const resumes = await Resume.find({userId})
+        return res.status(200).json({resumes})
+    } catch (error) {        
         return res.status(400).json({message: error.message})
     }
 }
