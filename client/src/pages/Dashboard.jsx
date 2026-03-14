@@ -2,8 +2,15 @@ import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCl
 import React, { useEffect, useState } from 'react'
 import {dummyResumeData} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import api from '../configs/api'
+import toast from 'react-hot-toast'
+import pdfToText from 'react-pdftotext'
 
 const Dashboard = () => {
+
+  const {user, token} = useSelector( state => state.auth)
+
   // different colors for different resume items
   const colors = ['#9333ea', '#d97706', '#dc2626', '#0284c7', '#16a34a']
   //below the horizontal line we have to create a state for existing resumes
@@ -16,6 +23,7 @@ const Dashboard = () => {
     const [resume, setResume] = useState(null)
     // to store the id of resume which we want to edit
     const [editresumeId, seteditResumeId] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate() // to navigate to resume builder page when we click on a resume item
     const loadAllResumes = async()=>{
@@ -24,17 +32,34 @@ const Dashboard = () => {
       // here we will send a request to backend to create a resume and then update the allResumes state with the new resume
 
     const createResume = async(e)=>{
-      e.preventDefault()
-      // console.log(title)
-      setShowCreateResumes(false) // to close the popup after creating a resume
-      navigate(`/app/builder/res123`) // to navigate to resume builder page after creating a resume 
+      try {
+        e.preventDefault()
+        const {data} = await api.post('/api/resumes/create', {title}, {headers: {Authorization: token}})
+        setAllResumes([...allResumes, data.resume])
+        setTitle('')
+        setShowCreateResumes(false) // to close the popup after creating a resume
+        navigate(`/app/builder/${data.resume._id}`) // to navigate to resume builder page after creating a resume 
+        
+      } catch (error) {
+        toast.error(error?.response?.data?.message || error.message)
+      }
     }
     //to upload resume
     const uploadResume = async(event)=>{
       event.preventDefault()
-      // console.log(title)
-      setShowUploadResumes(false) // to close the popup after uploading a resume
-      navigate(`/app/builder/res123`)
+      setIsLoading(true)
+      try {
+        const resumeText = await pdfToText(resume)
+        const { data } = await api.post('/api/ai/upload-resume', {title, resumeText}, {headers: { Authorization: token }})
+        setTitle('')
+        setResume(null)
+        setShowUploadResumes(false) // to close the popup after uploading a resume
+        navigate(`/app/builder/${data.resumeId}`)
+
+      } catch (error) {
+        toast.error(error?.response?.data?.message || error.message)        
+      }
+      setIsLoading(false)
     }
     const editTitle = async (event)=>{
       event.preventDefault()
@@ -119,7 +144,7 @@ const Dashboard = () => {
           <form onSubmit={uploadResume} onClick={()=>{setShowUploadResumes(false)}} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
             <div onClick={e=>{e.stopPropagation()}} className='relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6 '> 
               <h2 className=' text-xl font-bold mb-4 '>Upload an Existing Resume</h2>
-              <input onChange={(e)=>{setTitle(e.target.value)} } value = {title} type="text" accept='.pdf,.doc,.docx' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
+              <input onChange={(e)=>{setTitle(e.target.value)} } placeholder='Enter resume title' value = {title} type="text" accept='.pdf,.doc,.docx' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
               <div>
                 <label htmlFor="resume-input" className='block text-sm text-slate-700'>
                   Select resume file

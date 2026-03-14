@@ -55,7 +55,7 @@ export const getResumeById = async (req,res) =>{
         const resume = await Resume.findOne({userId, _id: resumeId})
         if (!resume){
             return res.status(404).json({
-                msg: 'Resume not found'
+                message: 'Resume not found'
             })            
         }
         // updated some properties before sending it to the user
@@ -83,7 +83,7 @@ export const getPublicResumeById = async(req,res) =>{
 
         if (!resume){
             return res.status(404).json({
-                msg: 'Resume not found'
+                message: 'Resume not found'
             })            
         }
 

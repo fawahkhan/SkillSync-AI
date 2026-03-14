@@ -27,7 +27,6 @@ const Login = () => {
             dispatch(login(data))
             localStorage.setItem('token', data.token)
             toast.success(data.msg)
-            console.log(data)
         } catch (error) {
             toast(error?.response?.data?.msg || error.msg)
         }
