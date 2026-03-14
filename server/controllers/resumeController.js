@@ -1,9 +1,8 @@
-
-
+import imagekit from "../configs/imageKit.js"
+import Resume from "../models/Resume.js"
+import fs from 'fs'
 // controller for creating a new resume
 //  POST: /api/resumes/create
-
-import Resume from "../models/Resume"
 
 export const createResume = async (req,res) =>{
     try {
@@ -103,8 +102,24 @@ export const updateResume = async (req,res)=>{
         const userId = req.userId
         const {resumeId, resumeData, removeBackground} = req.body
         const image = req.file // this will be taken care by the middleware multer which handles all file uploads
+
         // COPY OF RESUME DATA  that will be saved in the db
         let resumeDataCopy = JSON.parse(resumeData);
+
+        if(image){
+            const imageBufferData = fs.createReadStream(image.path)
+            const response = await imagekit.files.upload({
+                file: imageBufferData,
+                fileName: 'resume.png',
+                folder: 'user-resumes',
+                transformation:{
+                    pre: 'w-300, h-300, fo-face, z-0.75' + (removeBackground ? ',e-bgremove' : '')
+                }
+            });
+            // this response will give us a url so we need to store it in resumedata
+            resumeDataCopy.personal_info.image = response.url
+        }
+
         // saving this in db and sending the updated resume in response
         const resume = await Resume.findByIdAndUpdate({
             userId,

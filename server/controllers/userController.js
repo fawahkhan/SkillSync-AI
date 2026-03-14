@@ -1,7 +1,7 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import Resume from "../models/Resume";
+import Resume from "../models/Resume.js";
 
 // after we create the userId this fn will generate and return the token
 const generateToken = (userId) => {
