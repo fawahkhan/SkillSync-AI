@@ -104,7 +104,7 @@ export const updateResume = async (req,res)=>{
         const image = req.file // this will be taken care by the middleware multer which handles all file uploads
 
         // COPY OF RESUME DATA  that will be saved in the db
-        let resumeDataCopy = JSON.parse(resumeData);
+        let resumeDataCopy = JSON.parse(JSON.stringify(resumeData));
 
         if(image){
             const imageBufferData = fs.createReadStream(image.path)
@@ -124,7 +124,7 @@ export const updateResume = async (req,res)=>{
         const resume = await Resume.findByIdAndUpdate({
             userId,
             _id: resumeId,      
-        }, resumeDataCopy, {new: true})
+        }, resumeDataCopy, { returnDocument: "after" })
         return res.status(200).json({
             message: "Updated and Saved successfully",
             resume,

@@ -1,4 +1,4 @@
-import { FilePenLineIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
+import { FilePenLineIcon, LoaderCircleIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import {dummyResumeData} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
@@ -27,7 +27,14 @@ const Dashboard = () => {
 
     const navigate = useNavigate() // to navigate to resume builder page when we click on a resume item
     const loadAllResumes = async()=>{
-      setAllResumes(dummyResumeData)  //loaded from assets folder
+      try {
+        const {data} = await api.get('/api/users/resumes', {headers: {Authorization: token}})
+        setAllResumes(data.resumes)
+        
+      } catch (error) {
+        toast.error(error?.response?.data?.message || error.message)
+
+      }
     }
       // here we will send a request to backend to create a resume and then update the allResumes state with the new resume
 
@@ -61,13 +68,37 @@ const Dashboard = () => {
       }
       setIsLoading(false)
     }
-    const editTitle = async (event)=>{
-      event.preventDefault()
+    const editTitle = async (event) => {
+      try {
+        event.preventDefault()
+        const { data } = await api.put('/api/resumes/update', {
+          resumeId: editresumeId,
+          resumeData: { title }
+        }, { headers: { Authorization: token } })
+
+        setAllResumes(allResumes.map(resume =>
+          resume._id === editresumeId ? { ...resume, title } : resume
+        ))
+
+        setTitle('')
+        seteditResumeId('')
+        toast.success(data.message)
+      } catch (error) {
+        toast.error(error?.response?.data?.message || error.message)
+      }
     }
-    const deleteResume = async (resumeId)=>{
-      const confirm = window.confirm('Are you sure you want to delete that resume')
-      if(confirm){
-        setAllResumes(prev => prev.filter(resume => resume._id !== resumeId))
+    const deleteResume = async (resumeId) => {
+      try {
+        const confirm = window.confirm('Are you sure you want to delete this resume?')
+        if (confirm) {
+          const { data } = await api.delete(`/api/resumes/delete/${resumeId}`, {
+            headers: { Authorization: token }
+          })
+          setAllResumes(allResumes.filter(resume => resume._id !== resumeId))
+          toast.success(data.message)
+        }
+      } catch (error) {
+        toast.error(error?.response?.data?.message || error.message)
       }
     }
     //to execute that data whenever the file gets loaded
@@ -163,7 +194,10 @@ const Dashboard = () => {
                 </label>
                 <input type="file" id='resume-input' accept='.pdf' hidden onChange={(e)=>{setResume(e.target.files[0 ])}} />
               </div>
-              <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>Upload Resume </button>
+              <button disabled={isLoading} className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center justify-center gap-2'>
+              {isLoading && <LoaderCircleIcon className='animate-spin size-4 text-white'/>}
+              {isLoading ? 'Uploading...' : 'Upload Resume'}  
+              </button>
               {/* icon to close popup */}
               <XIcon className=' absolute top-4 right-4 cursor-pointer text-slate-400 hover:text-slate-600 transition-colors' onClick={()=>{setShowUploadResumes(false); setTitle('')}}/>
             </div>
