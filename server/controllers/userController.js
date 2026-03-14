@@ -82,3 +82,29 @@ export const loginUser = async (req,res)=>{
         return res.status(400).json({message: error.message})
     }
 }
+
+// controller for getting user by id
+// GET: /api/users/data
+
+export const getUserById = async (req,res)=>{
+    try {
+        const userId = req.userId;  // we will be achieving this userId from the middleware
+
+        // check if user exists
+        const user = await User.findById(userId)
+        if(!user){
+            return res.status(404).json({
+                msg: 'User not found'
+            })
+        }
+
+        // return user & success message if user is found
+        user.password = undefined ;
+
+        res.status(200).json({
+            user ,
+        })
+    } catch (error) {
+        return res.status(400).json({message: error.message})
+    }
+}
