@@ -1,7 +1,7 @@
 import { Plus, Trash2 } from 'lucide-react';
 import React from 'react'
 
-const ProjectForm = ({data, onChange}) => {
+const ProjectForm = ({data = [], onChange}) => {
     const addProject = () =>{
         const newProject = {
             name: "",
@@ -11,7 +11,7 @@ const ProjectForm = ({data, onChange}) => {
         onChange([...data, newProject])
     }
     const removeProject = (index)=>{
-        const updated = data.filter((_ , i)=>{ i!== index});
+        const updated = data.filter((_ , i)=> i !== index);
         onChange(updated)
     }
     const updateProject = (index, field, value)=>{
