@@ -14,7 +14,11 @@ await connectDB()
 
 app.use(express.json())
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'https://skillsync-ai-blond.vercel.app/',
+    origin: [
+        process.env.FRONTEND_URL, 
+        'https://skillsync-ai-blond.vercel.app', 
+        'https://skillsync-ai-mohd-fawah-khans-projects.vercel.app'
+    ].filter(Boolean),
     credentials: true // allow sending cookies/sessions if needed
 }))
 
