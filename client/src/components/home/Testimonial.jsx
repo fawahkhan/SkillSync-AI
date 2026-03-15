@@ -7,27 +7,31 @@ const Testimonial = () => {
         const cardsData = [
         {
             image: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200',
-            name: 'Briar Martin',
-            handle: '@neilstellar',
-            date: 'April 20, 2025'
+            name: 'Brian Martin',
+            handle: '@brian_dev',
+            date: 'March 12, 2026',
+            review: "The AI summary feature is mind-blowing. It took my messy brain-dump and turned it into an executive summary that landed me three interviews in a week."
         },
         {
             image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200',
             name: 'Avery Johnson',
-            handle: '@averywrites',
-            date: 'May 10, 2025'
+            handle: '@avery_codes',
+            date: 'February 28, 2026',
+            review: "I've tried so many resume builders, but the real-time preview and the ATS-friendly formatting here literally saved me hours of stress."
         },
         {
             image: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60',
             name: 'Jordan Lee',
             handle: '@jordantalks',
-            date: 'June 5, 2025'
+            date: 'March 01, 2026',
+            review: "Being able to just share my resume as a custom public link is a game changer. No more attaching random outdated PDFs to emails!"
         },
         {
             image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60',
-            name: 'Avery Johnson',
-            handle: '@averywrites',
-            date: 'May 10, 2025'
+            name: 'Marcus Chen',
+            handle: '@marcus_chen99',
+            date: 'January 15, 2026',
+            review: "The smart form guided me perfectly. It feels like having a professional recruiter sitting next to you helping you write your experience."
         },
     ];
     const CreateCard = ({ card }) => (
@@ -44,8 +48,7 @@ const Testimonial = () => {
                     <span className="text-xs text-slate-500">{card.handle}</span>
                 </div>
             </div>
-            <p className="text-sm py-4 text-gray-800">Radiant made undercutting all of our competitors an absolute
-                breeze.</p>
+            <p className="text-sm py-4 text-gray-800">{card.review}</p>
             <div className="flex items-center justify-between text-slate-500 text-xs">
                 <div className="flex items-center gap-1">
                     <span>Posted on</span>
@@ -62,7 +65,7 @@ const Testimonial = () => {
 
   return (
     <>
-    <div id='testimonial' className='flex flex-col items-center my-10 scroll-mt-12'>
+    <div id='testimonials' className='flex flex-col items-center my-10 scroll-mt-12'>
         <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 border border-green-200 rounded-full px-6 py-1.5">
             <BookUserIcon className='size-4.5 stroke-green-600'/>
             <span>Testimonials</span>
