@@ -3,12 +3,12 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
-            <footer className="flex flex-wrap justify-center lg:justify-between overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-slate-500 bg-gradient-to-r from-white via-teal-200/60 to-white mt-40">
-                <div className="flex flex-wrap items-start gap-10 md:gap-[60px] xl:gap-[140px]">
-                    <a href="#">
+            <footer className="flex flex-col md:flex-row flex-wrap justify-between items-center md:items-start overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-slate-500 bg-gradient-to-r from-white via-teal-200/60 to-white mt-40">
+                <div className="flex flex-col md:flex-row flex-wrap items-center md:items-start gap-10 md:gap-[60px] xl:gap-[140px] w-full md:w-auto text-center md:text-left">
+                    <a href="#" className="w-full md:w-auto flex justify-center md:block">
                         <img src="/logo.svg" alt="logo"className='h-11 w-auto' />
                     </a>
-                    <div>
+                    <div className="w-full md:w-auto">
                         <p className="text-slate-800 font-semibold">Product</p>
                         <ul className="mt-2 space-y-2">
                             <li><a href="/" className="hover:text-teal-600 transition">Home</a></li>
@@ -17,7 +17,7 @@ const Footer = () => {
                             <li><a href="/" className="hover:text-teal-600 transition">Affiliate</a></li>
                         </ul>
                     </div>
-                    <div>
+                    <div className="w-full md:w-auto">
                         <p className="text-slate-800 font-semibold">Resources</p>
                         <ul className="mt-2 space-y-2">
                             <li><a href="/" className="hover:text-teal-600 transition">Company</a></li>
@@ -27,7 +27,7 @@ const Footer = () => {
                             <li><a href="/" className="hover:text-teal-600 transition">About</a></li>
                         </ul>
                     </div>
-                    <div>
+                    <div className="w-full md:w-auto">
                         <p className="text-slate-800 font-semibold">Legal</p>
                         <ul className="mt-2 space-y-2">
                             <li><a href="/" className="hover:text-teal-600 transition">Privacy</a></li>
@@ -35,7 +35,7 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="flex flex-col max-md:items-center max-md:text-center gap-2 items-end">
+                <div className="flex flex-col items-center md:items-end text-center md:text-right gap-2 w-full md:w-auto mt-8 md:mt-0">
                     <p className="max-w-60">Build resumes that get noticed and turn your skills into opportunities with AI. </p>
                     <div className="flex items-center gap-4 mt-3">
                         <a href="https://portfolio-project-zeta-peach.vercel.app/" target="_blank" rel="noreferrer">

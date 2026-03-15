@@ -3,7 +3,6 @@ import React from 'react'
 import Title from './Title';
 
 const Features = () => {
-    const [isHover, setIsHover] = React.useState(false);
     return (
 
         <div id='features' className='flex flex-col items-center my-10 scroll-mt-12'>
@@ -17,11 +16,11 @@ const Features = () => {
 
             <div className="flex flex-col md:flex-row items-center justify-center xl:-mt-10">
                 <img className="max-w-2xl w-full xl:-ml-32" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/features/group-image-1.png" alt="" />
-                <div className=" px-4 md:px-0 grid grid-cols-2 gap-2 md:gap-8" onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+                <div className=" px-4 md:px-0 flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-8">
                     
                     {/* Feature 1 */}
                     <div className="flex items-center justify-start gap-6 max-w-md group cursor-pointer">
-                        <div className={`p-4 md:p-5 group-hover:bg-violet-100 border border-transparent group-hover:border-violet-300 flex gap-4 rounded-xl transition-colors ${!isHover ? 'border-violet-300 bg-violet-100' : ''}`}>
+                        <div className="p-4 md:p-5 group-hover:bg-violet-100 border border-transparent group-hover:border-violet-300 flex gap-4 rounded-xl transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-6 stroke-violet-600 shrink-0"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2c.8.8 2 .8 2.8 0L19 11Z"/><path d="m5 2 5 5"/><path d="M2 13h15"/><path d="M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>
                              <div className="space-y-1">
                                 <h3 className="text-base font-semibold text-slate-700">AI-Powered Enhancement</h3>

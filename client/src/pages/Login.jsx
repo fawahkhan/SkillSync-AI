@@ -1,4 +1,4 @@
-import { Lock, Mail, User2Icon } from 'lucide-react'
+import { Lock, Mail, User2Icon, Loader2 } from 'lucide-react'
 import React from 'react'
 import api from '../configs/api'
 import { useDispatch } from 'react-redux'
@@ -12,6 +12,7 @@ const Login = () => {
     const urlState = query.get('state')
     //give this state you fetched into the useState.
     const [state, setState] = React.useState(urlState ||"login")
+    const [isLoading, setIsLoading] = React.useState(false)
 
     const [formData, setFormData] = React.useState({
         name: '',
@@ -21,6 +22,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
         // now we will be doing axios api call for login/registering the user 
         try {
             const {data} = await api.post(`/api/users/${state}`, formData)
@@ -28,9 +30,10 @@ const Login = () => {
             localStorage.setItem('token', data.token)
             toast.success(data.msg)
         } catch (error) {
-            toast(error?.response?.data?.msg || error.msg)
+            toast.error(error?.response?.data?.message || error.message)
+        } finally {
+            setIsLoading(false)
         }
-
     }
 
     const handleChange = (e) => {
@@ -72,8 +75,8 @@ const Login = () => {
                 </button>
             </div>
 
-            <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-teal-600 hover:bg-teal-500 transition " >
-                {state === "login" ? "Login" : "Sign up"}
+            <button disabled={isLoading} type="submit" className="mt-2 w-full h-11 flex items-center justify-center gap-2 rounded-full text-white bg-teal-600 hover:bg-teal-500 transition disabled:opacity-70 disabled:cursor-not-allowed" >
+                {isLoading ? <Loader2 className="animate-spin size-5" /> : (state === "login" ? "Login" : "Sign up")}
             </button>
 
             <p onClick={() => setState(prev => prev === "login" ? "register" : "login") } className="text-slate-400 text-sm mt-3 mb-11 cursor-pointer" >
