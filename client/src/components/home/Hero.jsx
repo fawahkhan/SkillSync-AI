@@ -21,7 +21,7 @@ const Hero = () => {
             <div className="min-h-screen pb-20">
                 {/* Navbar */}
                 <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
-                    <a href="https://prebuiltui.com">
+                    <a href="#">
                         <img src="/logo.svg" alt="logo" className='h-11 w-auto' />
                     </a>
 
@@ -93,7 +93,7 @@ const Hero = () => {
                         Land your dream job with <span className=" bg-linear-to-r from-green-700 to-green-600 bg-clip-text text-transparent text-nowrap">AI-powered </span> resumes.
                     </h1>
 
-                    <p className="max-w-md text-center text-base my-7">Explore a growing library of over 320+ beautifully crafted, customizable components.</p>
+                    <p className="max-w-md text-center text-base my-7">Build resumes that get noticed in minutes with beautifully crafted, customizable templates.</p>
 
                     {/* CTA Buttons */}
                     <div className="flex items-center gap-4 ">
