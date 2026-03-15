@@ -25,7 +25,7 @@ const ColorPicker = ({ selectedColor, onChange }) => {
       </button>
     
       {isOpen && (
-        <div className='grid grid-cols-4 w-60 gap-2 absolute top-full left-0 right-0 p-3 mt-2 z-10 bg-white rounded-md border border-gray-200 shadow-sm'>
+        <div className='grid grid-cols-4 w-60 gap-2 absolute top-full left-0 right-0 p-3 mt-2 z-10 bg-white rounded-md border border-slate-200 shadow-sm'>
           {colors.map((color) => (
             <div
               key={color.value}
@@ -41,7 +41,7 @@ const ColorPicker = ({ selectedColor, onChange }) => {
                     <Check className='size-5 text-white'/>
                 </div>
               )}
-              <p className='text-xs  text-center mt-1 text-gray-600'>{color.name}</p>
+              <p className='text-xs  text-center mt-1 text-slate-600'>{color.name}</p>
             </div>
           ))}
         </div>

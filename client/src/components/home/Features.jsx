@@ -9,7 +9,7 @@ const Features = () => {
         <div id='features' className='flex flex-col items-center my-10 scroll-mt-12'>
             
             
-            <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 border border-green-200 rounded-full px-6 py-1.5">
+            <div className="flex items-center gap-2 text-sm text-teal-600 bg-teal-400/10 border border-teal-200 rounded-full px-6 py-1.5">
                 <Zap width={14}/>
                 <span>Simple Process</span>
             </div>  
@@ -17,7 +17,7 @@ const Features = () => {
 
             <div className="flex flex-col md:flex-row items-center justify-center xl:-mt-10">
                 <img className="max-w-2xl w-full xl:-ml-32" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/features/group-image-1.png" alt="" />
-                <div className="mt-15 px-4 md:px-0 grid flex flex-col gap-2 md:gap-0.5" onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+                <div className=" px-4 md:px-0 grid grid-cols-2 gap-2 md:gap-8" onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
                     
                     {/* Feature 1 */}
                     <div className="flex items-center justify-start gap-6 max-w-md group cursor-pointer">
@@ -25,15 +25,15 @@ const Features = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-6 stroke-violet-600 shrink-0"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2c.8.8 2 .8 2.8 0L19 11Z"/><path d="m5 2 5 5"/><path d="M2 13h15"/><path d="M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>
                              <div className="space-y-1">
                                 <h3 className="text-base font-semibold text-slate-700">AI-Powered Enhancement</h3>
-                                <p className="text-sm text-slate-600 max-w-xs">Let GenAI refine your experience into powerful, recruiter-ready descriptions.</p>
+                                <p className="text-sm text-slate-600 max-w-xs">Let AI refine your experience into powerful, recruiter-ready descriptions.</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Feature 2 */}
                     <div className="flex items-center justify-start gap-6 max-w-md group cursor-pointer">
-                        <div className="p-4 md:p-5 group-hover:bg-green-100 border border-transparent group-hover:border-green-300 flex gap-4 rounded-xl transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-6 stroke-green-600 shrink-0"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" /></svg>
+                        <div className="p-4 md:p-5 group-hover:bg-teal-100 border border-transparent group-hover:border-teal-300 flex gap-4 rounded-xl transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-6 stroke-teal-600 shrink-0"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" /></svg>
                              <div className="space-y-1">
                                 <h3 className="text-base font-semibold text-slate-700">Smart Resume Builder</h3>
                                 <p className="text-sm text-slate-600 max-w-xs">Fill out a simple guided form and instantly get a beautifully structured resume.</p>

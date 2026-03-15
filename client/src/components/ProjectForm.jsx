@@ -24,15 +24,15 @@ const ProjectForm = ({data = [], onChange}) => {
         <div className='flex items-center justify-between'>
           {/* left side heading */}
           <div>
-            <h3 className='flex items-center gap-2 text-lg font-semibold text-gray-900'>
+            <h3 className='flex items-center gap-2 text-lg font-semibold text-slate-900'>
               Projects 
             </h3>
-            <p className='text-sm text-gray-500'>
+            <p className='text-sm text-slate-500'>
               Add your projects
             </p>
           </div>
             {/* right side - button to add project by ai. */}
-          <button onClick={addProject} className='flex items-center gap-2 px-3 py-1 text-sm bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors '>
+          <button onClick={addProject} className='flex items-center gap-2 px-3 py-1 text-sm bg-teal-100 text-teal-700 rounded-lg hover:bg-teal-200 transition-colors '>
             <Plus className="size-4" />
             Add Project
           </button>
@@ -41,7 +41,7 @@ const ProjectForm = ({data = [], onChange}) => {
             <div className='space-y-4 mt-6'>
                 {/* when we have project data */}
                 {data.map((project, index)=>(
-                    <div key={index} className="p-4 border border-gray-200 rounded-lg space-y-3">
+                    <div key={index} className="p-4 border border-slate-200 rounded-lg space-y-3">
                       <div className='flex justify-between items-start'>
                         <h4>Project #{index + 1}</h4>
 

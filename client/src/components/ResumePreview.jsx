@@ -20,8 +20,8 @@ const ResumePreview = ({data, template, accentColor, classes = ""}) => {
     }  
   
     return (
-    <div className='w-full bg-gray-100'>
-      <div id="resume-preview" className={"border border-gray-200 print:shadow-none print:border-none " + classes}>
+    <div className='w-full bg-slate-100'>
+      <div id="resume-preview" className={"border border-slate-200 print:shadow-none print:border-none " + classes}>
 
             {/* we will use the resume template here and we will pass the data through props */}
             {renderTemplate()}

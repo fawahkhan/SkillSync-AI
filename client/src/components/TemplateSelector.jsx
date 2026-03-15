@@ -36,11 +36,11 @@ const TemplateSelector = ({selectedTemplate, onChange}) => {
         <Layout size={14} /> <span className='max-sm:hidden'>Template</span>
       </button>
       {isOpen && (
-        <div className='absolute top-full mt-2 w-xs p-3 space-y-3 z-10 bg-white rounded-md border border-gray-200 shadow-sm'>
+        <div className='absolute top-full mt-2 w-xs p-3 space-y-3 z-10 bg-white rounded-md border border-slate-200 shadow-sm'>
           {templates.map(template => (
             <div key={template.id} onClick={() => {onChange(template.id) ; setIsOpen(false)}} className={`relative p-3 border rounded-md cursor-pointer transition-all ${selectedTemplate === template.id ?
              "border-blue-400 bg-blue-100"
-             : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
+             : "border-slate-300 hover:border-slate-400 hover:bg-slate-100"
             }`}>
               {selectedTemplate === template.id && (
                 <div className='absolute top-2 right-2'>
@@ -50,8 +50,8 @@ const TemplateSelector = ({selectedTemplate, onChange}) => {
                 </div>
               )}
               <div className='space-y-1'>
-                <h4 className='font-medium text-gray-800'>{template.name}</h4>
-                <div className='mt-2 p-2 bg-blue-50 rounded text-xs text-gray-500 italic'>{template.preview}</div>
+                <h4 className='font-medium text-slate-800'>{template.name}</h4>
+                <div className='mt-2 p-2 bg-blue-50 rounded text-xs text-slate-500 italic'>{template.preview}</div>
               </div>
             </div>
           ))}

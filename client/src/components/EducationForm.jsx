@@ -26,23 +26,23 @@ const EducationForm = ({data, onChange}) => {
         <div className='flex items-center justify-between'>
           {/* left side heading */}
           <div>
-            <h3 className='flex items-center gap-2 text-lg font-semibold text-gray-900'>
+            <h3 className='flex items-center gap-2 text-lg font-semibold text-slate-900'>
               Education 
             </h3>
-            <p className='text-sm text-gray-500'>
+            <p className='text-sm text-slate-500'>
               Add your education details 
             </p>
           </div>
             {/* right side - button to enhance summary by ai. */}
-          <button onClick={addEducation} className='flex items-center gap-2 px-3 py-1 text-sm bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors '>
+          <button onClick={addEducation} className='flex items-center gap-2 px-3 py-1 text-sm bg-teal-100 text-teal-700 rounded-lg hover:bg-teal-200 transition-colors '>
             <Plus className="size-4" />
             Add Education
           </button>
         </div>
         {data.length === 0?(
-            <div className='text-center py-8 text-gray-500'>
+            <div className='text-center py-8 text-slate-500'>
                 {/* when we dont have any Education data */}
-                <GraduationCap className='w-12 h-12 mx-auto mb-3 text-gray-300'/>
+                <GraduationCap className='w-12 h-12 mx-auto mb-3 text-slate-300'/>
                 <p>No education added yet</p>
                 <p className='text-sm'>Click "Add Education" to get started</p>
             </div>
@@ -50,7 +50,7 @@ const EducationForm = ({data, onChange}) => {
             <div className='space-y-4'>
                 {/* when we have education data */}
                 {data.map((education, index)=>(
-                    <div key={index} className="p-4 border border-gray-200 rounded-lg space-y-3">
+                    <div key={index} className="p-4 border border-slate-200 rounded-lg space-y-3">
                       <div className='flex justify-between items-start'>
                         <h4>Education #{index + 1}</h4>
 
@@ -88,7 +88,7 @@ const EducationForm = ({data, onChange}) => {
                           value={education.graduation_date || ""}
                           onChange={(e) => updateEducation(index, "graduation_date", e.target.value)}
                           type="month"
-                          className="px-3 py-2 text-sm disabled:bg-gray-100"
+                          className="px-3 py-2 text-sm disabled:bg-slate-100"
                         />
                       </div>
                         <input

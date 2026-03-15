@@ -18,7 +18,7 @@ const Layout = () => {
       {
         // we will only show the login form if the user is not logged in and not the app dashboard.
         user ? (
-          <div className='min-h-screen bg-gray-50'>
+          <div className='min-h-screen bg-slate-50'>
             <Navbar/>
             <Outlet /> {/* Child or sub-routes render here */}
           </div> 
