@@ -43,6 +43,22 @@ const ResumeBuilder = () => {
       })
 
       if (data.resume) {
+        if (typeof data.resume.skills === 'string') {
+          data.resume.skills = data.resume.skills.split(',').map(s => s.trim()).filter(Boolean);
+        } else if (!Array.isArray(data.resume.skills)) {
+          data.resume.skills = [];
+        }
+        
+        // Handle migration from projects to project
+        if (data.resume.projects && (!data.resume.project || data.resume.project.length === 0)) {
+          data.resume.project = data.resume.projects;
+        } else if (!Array.isArray(data.resume.project)) {
+          data.resume.project = [];
+        }
+        
+        if (!Array.isArray(data.resume.experience)) data.resume.experience = [];
+        if (!Array.isArray(data.resume.education)) data.resume.education = [];
+
         setResumeData(data.resume)
         document.title = data.resume.title;
       }

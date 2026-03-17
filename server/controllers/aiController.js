@@ -82,7 +82,7 @@ export const uploadResume = async (req,res) =>{
         provide the data in the following JSON format with no additional text before or after:
         {
             professional_summary: {type: String , default: '' },
-            skills: {type: String , default: '' },
+            skills: {type: [String] , default: [] },
             personal_info: {
                 image: {type: String , default: '' },
                 full_name: {type: String , default: '' },
@@ -103,7 +103,7 @@ export const uploadResume = async (req,res) =>{
                 is_current: {type: Boolean},
             }  
             ],
-            projects: [
+            project: [
             {
                 name: {type: String},
                 type: {type: String},

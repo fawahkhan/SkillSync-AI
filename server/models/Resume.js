@@ -10,7 +10,7 @@ const ResumeSchema = new Schema({
     template: {type: String , default: "classic" },
     accent_color: {type: String , default: "#3B82F6" },
     professional_summary: {type: String , default: '' },
-    skills: {type: String , default: '' },
+    skills: {type: [String] , default: [] },
     personal_info: {
         image: {type: String , default: '' },
         full_name: {type: String , default: '' },
@@ -31,7 +31,7 @@ const ResumeSchema = new Schema({
         is_current: {type: Boolean},
       }  
     ],
-    projects: [
+    project: [
       {
         name: {type: String},
         type: {type: String},
